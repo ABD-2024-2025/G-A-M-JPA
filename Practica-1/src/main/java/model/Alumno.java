@@ -52,4 +52,9 @@ public class Alumno implements Serializable {
 		this.apellido = apellido;
 	}
    
+   	@Override
+	public String toString() {
+		return "Alumno [NIF=" + getNIF() + ", Nombre=" + getNombre() + 
+			", Apellido=" + getApellido() + ", Edad=" + getEdad() + "]";
+	}
 }
