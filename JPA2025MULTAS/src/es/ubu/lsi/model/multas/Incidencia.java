@@ -25,7 +25,7 @@ public class Incidencia implements Serializable {
     
     @ManyToOne
     @JoinColumn(name = "idTipo")
-    private TipoIncidencia tipoIncidencia;
+    private TipoIncidencia idTipo;
 
     public Incidencia() {
     }  
@@ -56,11 +56,11 @@ public class Incidencia implements Serializable {
     }   
        
     public TipoIncidencia getTipoIncidencia() {
-        return tipoIncidencia;
+        return idTipo;
     }
 
     public void setTipoIncidencia(TipoIncidencia tipoIncidencia) {
-        this.tipoIncidencia = tipoIncidencia;
+        this.idTipo = tipoIncidencia;
     }
    
     public String getAnotacion() {

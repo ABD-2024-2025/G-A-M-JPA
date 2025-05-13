@@ -15,7 +15,7 @@ public class TipoIncidencia implements Serializable {
 	private Integer id;
 	private String descripcion;
 	private int valor;
-	@OneToMany(mappedBy = "tipoIncidencia")
+	@OneToMany(mappedBy = "idTipo", cascade = CascadeType.ALL)
 	private List<Incidencia> incidencias;
 	
 	public TipoIncidencia() {

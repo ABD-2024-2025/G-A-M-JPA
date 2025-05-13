@@ -3,7 +3,6 @@ package es.ubu.lsi.model.multas;
 import java.io.Serializable;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
