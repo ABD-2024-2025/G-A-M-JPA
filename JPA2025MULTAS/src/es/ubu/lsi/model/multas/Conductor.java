@@ -3,6 +3,8 @@ package es.ubu.lsi.model.multas;
 import java.io.Serializable;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.List;
+
 import javax.persistence.*;
 
 /**
@@ -13,18 +15,22 @@ import javax.persistence.*;
 @Table(name="Conductor")
 public class Conductor implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	private String NIF;
 	private String nombre;
 	private String apellido;
-	@OneToMany
-	@JoinColumn(name = "dp_ip") 
+	@Embedded
 	private DireccionPostal direccion;
 	private Integer puntos;
-	@ManyToMany
-	@JoinColumn(name = "idauto") 
-	private Vehiculo idauto;
-	private static final long serialVersionUID = 1L;
+    @ManyToMany
+    @JoinTable(
+        name = "Conductor_Vehiculo",
+        joinColumns = @JoinColumn(name = "nif"),
+        inverseJoinColumns = @JoinColumn(name = "idauto")
+    )
+    private List<Vehiculo> vehiculos;
 
 	public Conductor() {
 		super();
@@ -69,18 +75,28 @@ public class Conductor implements Serializable {
 		this.puntos = puntos;
 	}
 	
-	public Vehiculo getIdauto() {
-		return this.idauto;
-	}
+    public List<Vehiculo> getVehiculos() {
+        return this.vehiculos;
+    }
 
-	public void setIdauto(Vehiculo idauto) {
-		this.idauto = idauto;
+    public void setVehiculos(List<Vehiculo> vehiculos) {
+        this.vehiculos = vehiculos;
+    }
+    
+    public void addVehiculo(Vehiculo vehiculo) {
+		this.vehiculos.add(vehiculo);
+		vehiculo.getConductores().add(this);
 	}
+    
+    public void removeVehiculo(Vehiculo vehiculo) {
+    	this.vehiculos.remove(vehiculo);
+    	vehiculo.getConductores().remove(this);
+    }
    
    	@Override
 	public String toString() {
 		return "Conductor [NIF=" + getNIF() + ", Nombre=" + getNombre() + 
 			", Apellido=" + getApellido() + ", Direccion=" + getDireccion() + 
-			", Puntos=" + getPuntos() + ", Vehiculo=" + getIdauto() + "]";
+			", Puntos=" + getPuntos() + ", Vehiculos=" + getVehiculos() + "]";
 	}
 }

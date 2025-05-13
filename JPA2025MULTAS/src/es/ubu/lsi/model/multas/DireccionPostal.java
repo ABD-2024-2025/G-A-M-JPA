@@ -9,7 +9,6 @@ public class DireccionPostal implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-
 	private Integer dp_id;
 	private String direccion;
 	private String cp;
@@ -49,9 +48,10 @@ public class DireccionPostal implements Serializable {
 		return this.ciudad;
 	}
 	
-   	@Override
-	public String toString() {
-		return "DireccionPostal [dp_id="+getDP_ID();
-	}
+    @Override
+    public String toString() {
+        return "DireccionPostal [dp_id=" + getDP_ID() + ", direccion=" + getDireccion() + 
+               ", cp=" + getCP() + ", ciudad=" + getCiudad() + "]";
+    }
 }
 
