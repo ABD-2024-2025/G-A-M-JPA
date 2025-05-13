@@ -28,7 +28,7 @@ public class Conductor implements Serializable {
 	private Integer puntos;
     @OneToMany(mappedBy="idauto")
     private List<Vehiculo> idauto;
-    @OneToMany(mappedBy="conductor", cascade=CascadeType.ALL)
+    @OneToMany(mappedBy="NIF", cascade=CascadeType.ALL)
 	private Set<Incidencia> incidencias;
 
 	public Conductor() {
