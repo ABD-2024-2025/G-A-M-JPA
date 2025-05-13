@@ -9,7 +9,12 @@ import java.util.Set;
 import javax.persistence.*;
 
 /**
- * Entity implementation class for Entity: Conductor
+ * Modelo de datos de un conductor.
+ * 
+ * @author <a href="https://joseleelportfolio.vercel.app">José Gallardo</a>
+ * @author <a href="mailto:sap1013@alu.ubu.es">Sara ABejón</a>
+ * @author <a href="mailto:mmg1065@alu.ubu.es">María Molina</a>
+ * @since 1.0
  *
  */
 @Entity
