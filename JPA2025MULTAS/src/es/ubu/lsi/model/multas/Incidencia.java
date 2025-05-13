@@ -18,6 +18,8 @@ public class Incidencia implements Serializable {
 	@Id
 	private Date fecha;
 	@Id
+	@ManyToOne
+	@JoinColumns(name="incidencias")
 	private String NIF;
 	private String anotacion;
 	@ManyToOne
