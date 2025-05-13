@@ -3,6 +3,8 @@ package es.ubu.lsi.model.multas;
 import java.io.Serializable;
 import java.lang.Integer;
 import java.lang.String;
+import java.sql.Date;
+
 import javax.persistence.*;
 
 /**
@@ -28,8 +30,7 @@ public class Incidencia implements Serializable {
 	private Vehiculo idauto;
 	private static final long serialVersionUID = 1L;
 
-	public Conductor() {
-		super();
+	public Incidencia() {
 	}  
 	
 	public String getNIF() {
