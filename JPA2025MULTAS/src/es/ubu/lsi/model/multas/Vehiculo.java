@@ -22,8 +22,9 @@ public class Vehiculo implements Serializable {
 	private String nombre;
 	@Embedded
 	private DireccionPostal direccion;
-    @ManyToMany(mappedBy = "vehiculos")
-    private List<Conductor> conductores;
+    @ManyToOne
+	@JoinColumns(name="idauto")
+    private Conductor conductor;
 
 	public Vehiculo() {
 		super();

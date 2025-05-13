@@ -26,7 +26,7 @@ public class Conductor implements Serializable {
 	private DireccionPostal direccion;
 	private Integer puntos;
     @OneToMany(mappedBy="idauto")
-    private Collection<Vehiculo> vehiculos;
+    private List<Vehiculo> idauto;
 
 	public Conductor() {
 		super();
