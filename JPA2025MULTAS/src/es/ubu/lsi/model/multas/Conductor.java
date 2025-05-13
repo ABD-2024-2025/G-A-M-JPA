@@ -27,7 +27,7 @@ public class Conductor implements Serializable {
 	private DireccionPostal direccion;
 	private Integer puntos;
     @OneToMany(mappedBy="idauto")
-    private List<Vehiculo> idauto;
+    private List<Vehiculo> idAuto;
     @OneToMany(mappedBy="NIF", cascade=CascadeType.ALL)
 	private Set<Incidencia> incidencias;
 
@@ -75,21 +75,11 @@ public class Conductor implements Serializable {
 	}
 	
     public List<Vehiculo> getVehiculos() {
-        return (List<Vehiculo>) this.vehiculos;
+        return (List<Vehiculo>) this.idAuto;
     }
 
     public void setVehiculos(List<Vehiculo> vehiculos) {
-        this.vehiculos = vehiculos;
-    }
-    
-    public void addVehiculo(Vehiculo vehiculo) {
-		this.vehiculos.add(vehiculo);
-		vehiculo.getConductores().add(this);
-	}
-    
-    public void removeVehiculo(Vehiculo vehiculo) {
-    	this.vehiculos.remove(vehiculo);
-    	vehiculo.getConductores().remove(this);
+        this.idAuto = vehiculos;
     }
     
     public Set<Incidencia> getIncidencias() {
