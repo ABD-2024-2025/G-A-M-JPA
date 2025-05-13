@@ -52,27 +52,17 @@ public class Vehiculo implements Serializable {
 		this.direccion = direccion;
 	}
 	
-    public List<Conductor> getConductores() {
-        return this.conductores;
+    public Conductor getConductor() {
+        return this.conductor;
     }
 
-    public void setConductores(List<Conductor> conductores) {
-        this.conductores = conductores;
-    }
-    
-    public void addConductor(Conductor conductor) {
-		this.conductores.add(conductor);
-		conductor.getVehiculos().add(this);
-	}
-    
-    public void removeConductor(Conductor conductor) {
-    	this.conductores.remove(conductor);
-    	conductor.getVehiculos().remove(this);
+    public void setConductores(Conductor conductor) {
+        this.conductor = conductor;
     }
    
    	@Override
 	public String toString() {
 		return "Vehiculo [IdAuto=" + getIdAuto() + ", Nombre=" + getNombre() + 
-			", Direccion=" + getDireccion() + "]" + "\nConductores: " + getConductores();
+			", Direccion=" + getDireccion() + "]" + "\nConductor: " + getConductor();
 	}
 }
