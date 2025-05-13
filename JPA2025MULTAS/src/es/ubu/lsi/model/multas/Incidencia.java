@@ -19,19 +19,23 @@ public class Incidencia implements Serializable {
 	private Date fecha;
 	@Id
 	private String NIF;
-	private String nombre;
-	private String apellido;
-	@OneToMany
-	@JoinColumn(name = "dp_ip") 
-	private DireccionPostal direccion;
-	private Integer puntos;
-	@ManyToMany
-	@JoinColumn(name = "idauto") 
-	private Vehiculo idauto;
+	private String anotacion;
+	@ManyToOne
+	@JoinColumn(name = "idTipo")
+	private TipoIncidencia tipoIncidencia;
+	
 	private static final long serialVersionUID = 1L;
 
 	public Incidencia() {
 	}  
+	
+	public Date getFecha() {
+		return this.fecha;
+	}
+	
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
 	
 	public String getNIF() {
 		return this.NIF;
@@ -41,49 +45,25 @@ public class Incidencia implements Serializable {
 		this.NIF = NIF;
 	}   
 	   
-	public String getNombre() {
-		return this.nombre;
+	public TipoIncidencia getTipoIncidencia() {
+	    return tipoIncidencia;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}   
-	public String getApellido() {
-		return this.apellido;
-	}
-
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
-	}
-	
-	public String getDireccion() {
-		return this.direccion.toString();
-	}
-
-	public void setDireccion(DireccionPostal direccion) {
-		this.direccion = direccion;
-	}
-	
-	public Integer getPuntos() {
-		return this.puntos;
-	}
-
-	public void setPuntos(Integer puntos) {
-		this.puntos = puntos;
-	}
-	
-	public Vehiculo getIdauto() {
-		return this.idauto;
-	}
-
-	public void setIdauto(Vehiculo idauto) {
-		this.idauto = idauto;
+	public void setTipoIncidencia(TipoIncidencia tipoIncidencia) {
+	    this.tipoIncidencia = tipoIncidencia;
 	}
    
+	private String getAnotacion() {
+		return this.anotacion;
+	}
+	
+	private void setAnotacion(String anotacion) {
+		this.anotacion = anotacion;
+	}
+	
    	@Override
 	public String toString() {
-		return "Conductor [NIF=" + getNIF() + ", Nombre=" + getNombre() + 
-			", Apellido=" + getApellido() + ", Direccion=" + getDireccion() + 
-			", Puntos=" + getPuntos() + ", Vehiculo=" + getIdauto() + "]";
+		return "Incidencia [fecha=" + getFecha() + ", NIF=" + getNIF() + ", anotacion=" + getAnotacion() + ", tipoIncidencia=" + getTipoIncidencia() + "]";
 	}
+
 }
