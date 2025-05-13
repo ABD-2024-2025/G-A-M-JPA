@@ -63,7 +63,9 @@ public class Incidencia implements Serializable {
 	
    	@Override
 	public String toString() {
-		return "Incidencia [fecha=" + getFecha() + ", NIF=" + getNIF() + ", anotacion=" + getAnotacion() + ", tipoIncidencia=" + getTipoIncidencia() + "]";
+		return "Incidencia [fecha=" + getFecha() + ", NIF=" + getNIF() + 
+				", anotacion=" + getAnotacion() + ", tipoIncidencia=" + 
+				getTipoIncidencia() + "]";
 	}
 
 }
