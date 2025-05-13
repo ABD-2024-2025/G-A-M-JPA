@@ -24,13 +24,8 @@ public class Conductor implements Serializable {
 	@Embedded
 	private DireccionPostal direccion;
 	private Integer puntos;
-    @ManyToMany
-    @JoinTable(
-        name = "Conductor_Vehiculo",
-        joinColumns = @JoinColumn(name = "nif"),
-        inverseJoinColumns = @JoinColumn(name = "idauto")
-    )
-    private List<Vehiculo> vehiculos;
+    @OneToMany(mappedBy="idauto")
+    private Collection<Vehiculo> vehiculos;
 
 	public Conductor() {
 		super();
