@@ -3,6 +3,7 @@ package es.ubu.lsi.model.multas;
 import java.io.Serializable;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
@@ -27,6 +28,8 @@ public class Conductor implements Serializable {
 	private Integer puntos;
     @OneToMany(mappedBy="idauto")
     private Collection<Vehiculo> vehiculos;
+    @OneToMany(mappedBy="conductor", cascade=CascadeType.ALL)
+	private Set<Incidencia> incidencias;
 
 	public Conductor() {
 		super();
@@ -72,7 +75,7 @@ public class Conductor implements Serializable {
 	}
 	
     public List<Vehiculo> getVehiculos() {
-        return this.vehiculos;
+        return (List<Vehiculo>) this.vehiculos;
     }
 
     public void setVehiculos(List<Vehiculo> vehiculos) {
