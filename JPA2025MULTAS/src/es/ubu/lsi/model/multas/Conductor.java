@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -87,11 +88,24 @@ public class Conductor implements Serializable {
     	this.vehiculos.remove(vehiculo);
     	vehiculo.getConductores().remove(this);
     }
+    
+    public Set<Incidencia> getIncidencias() {
+        return incidencias;
+    }
+    
+    public void setIncidencias(Set<Incidencia> incidencias) {
+        this.incidencias = incidencias;
+    }
+    
+    public void addIncidencia(Incidencia inc) {
+        this.incidencias.add(inc);
+        inc.setConductor(this);
+    }
    
    	@Override
 	public String toString() {
 		return "Conductor [NIF=" + getNIF() + ", Nombre=" + getNombre() + 
 			", Apellido=" + getApellido() + ", Direccion=" + getDireccion() + 
-			", Puntos=" + getPuntos() + ", Vehiculos=" + getVehiculos() + "]";
+			", Puntos=" + getPuntos() + ", Vehiculos=" + getVehiculos() + "Incidencias=" + getIncidencias() + "]";
 	}
 }

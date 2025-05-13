@@ -231,7 +231,7 @@ public class TestClient {
 			List<Vehiculo> vehiculos = implService.consultarVehiculos();		
 			for (Vehiculo vehiclulo : vehiculos) {
 				System.out.println(vehiclulo.toString());
-				Set<Conductor> conductores = vehiclulo.getConductores();
+				Set<Conductor> conductores = (Set<Conductor>) vehiclulo.getConductores();
 				for (Conductor conductor : conductores) {
 					System.out.println("\t" + conductor.toString());
 					Set<Incidencia> incidencias = conductor.getIncidencias();
