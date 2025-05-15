@@ -13,28 +13,20 @@ package es.ubu.lsi.service.multas;
  *
  */
 public enum IncidentError {
-	
-	// If we have more error messages, add new values to the the end of enum type...
-	NOT_EXIST_INCIDENT_TYPE("No existe tipo de incidencia"),
-	NOT_AVAILABLE_POINTS("No tiene puntos disponibles para la sanción"),
-	ERROR_IN_DATE("Fecha y/o hora incorrecta"),
-	NOT_EXIST_VEHICLE("No existe el vehiculo"),
-	NOT_EXIST_DRIVER("No existe conductor");	
-	
-	/** Text. */
-	private String text;
-	
-	/** Constructor. */
-	private IncidentError(String text) {
-		this.text = text;
-	}
+    CONDUCTOR_NOT_FOUND(-20000, "Conductor no encontrado"),
+    TIPO_INCIDENCIA_NOT_FOUND(-20001, "Tipo de incidencia no encontrado"),
+    NOT_ENOUGH_POINTS(-20002, "No hay puntos suficientes"),
+    NOT_EXIST_INCIDENT_TYPE(-20003, "No existe el tipo de incidencia"),
+    UNKNOWN(-20999, "Error desconocido");
 
-	/**
-	 * Gets text.
-	 * 
-	 * @return text
-	 */
-	public String getText() {
-		return text;
-	}
+    private final int code;
+    private final String message;
+
+    IncidentError(int code, String message) {
+        this.code = code;
+        this.message = message;
+    }
+
+    public int getCode() { return code; }
+    public String getMessage() { return message; }
 }

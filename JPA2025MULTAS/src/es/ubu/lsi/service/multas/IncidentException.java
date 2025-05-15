@@ -15,103 +15,56 @@ import es.ubu.lsi.service.PersistenceException;
  */
 public class IncidentException extends PersistenceException {
 
-	/** Error code. */
-	private IncidentError error;
+    /** Default. */
+    private static final long serialVersionUID = 1L;
 
-	/** Default. */
-	private static final long serialVersionUID = 1L;
+    /** Error code. */
+    private final int code;
 
-	/**
-	 * Constructor.
-	 * 
-	 * @param text
-	 *            text
-	 */
-	public IncidentException(String text) {
-		super(text);
-	}
+    /** Incident error. */
+    private final IncidentError error;
 
-	/**
-	 * Constructor.
-	 * 
-	 * @param error
-	 *            error code
-	 */
-	public IncidentException(IncidentError error) {
-		super(error.getText());
-		setError(error);
-	}
+    /**
+     * Constructor.
+     * 
+     * @param error
+     *            incident error
+     */
+    public IncidentException(IncidentError error) {
+        super(error.getMessage());
+        this.code = error.getCode();
+        this.error = error;
+    }
 
-	/**
-	 * Constructor.
-	 * 
-	 * @param text
-	 *            text
-	 * @param ex
-	 *            exception
-	 */
-	public IncidentException(String text, Exception ex) {
-		super(text, ex);
-	}
+    /**
+     * Constructor.
+     * 
+     * @param code
+     *            error code
+     * @param message
+     *            error message
+     */
+    public IncidentException(int code, String message) {
+        super(message);
+        this.code = code;
+        this.error = null;
+    }
 
-	/**
-	 * Constructor.
-	 * 
-	 * @param text
-	 *            text
-	 * @param error
-	 *            error code
-	 * @param ex
-	 *            exception
-	 */
-	public IncidentException(String text, IncidentError error, Exception ex) {
-		super(text, ex);
-		setError(error);
-	}
+    /**
+     * Gets error code.
+     * 
+     * @return error code
+     */
+    public int getCode() {
+        return code;
+    }
 
-	/**
-	 * Constructor.
-	 * 
-	 * @param text
-	 *            text
-	 * @param error
-	 *            error code
-	 */
-	public IncidentException(String text, IncidentError error) {
-		super(text);
-		setError(error);
-	}
-
-	/**
-	 * Constructor.
-	 * 
-	 * @param error
-	 *            error code
-	 * @param ex
-	 *            exception
-	 */
-	public IncidentException(IncidentError error, Exception ex) {
-		super(ex);
-		setError(error);
-	}
-
-	/**
-	 * Gets error code.
-	 * 
-	 * @return error code
-	 * @return
-	 */
-	public IncidentError getError() {
-		return error;
-	}
-
-	/**
-	 * Sets error code.
-	 * 
-	 * @param error
-	 *            error
-	 */
-	private void setError(IncidentError error) {
-		this.error = error;
-	}
+    /**
+     * Gets incident error.
+     * 
+     * @return incident error
+     */
+    public IncidentError getError() {
+        return error;
+    }
 }
