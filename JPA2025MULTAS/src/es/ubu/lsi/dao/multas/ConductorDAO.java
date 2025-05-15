@@ -19,4 +19,8 @@ public class ConductorDAO extends JpaDAO<Conductor, String> {
             "SELECT c FROM Conductor c", Conductor.class);
         return query.getResultList();
     }
+
+    public void update(Conductor conductor) {
+        entityManager.merge(conductor);
+    }
 }

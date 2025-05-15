@@ -20,4 +20,13 @@ public class IncidenciaDAO extends JpaDAO<Incidencia, TipoIncidencia> {
             "SELECT i FROM Incidencia i", Incidencia.class);
         return query.getResultList();
     }
+
+    public void create(Incidencia incidencia) {
+        entityManager.persist(incidencia);
+    }
+
+    public void delete(Incidencia incidencia) {
+        Incidencia merged = entityManager.merge(incidencia);
+        entityManager.remove(merged);
+    }
 }
