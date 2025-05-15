@@ -64,6 +64,10 @@ public class TipoIncidencia implements Serializable {
 		incidencia.setTipoIncidencia(null);
 	}
 	
+	public int getPuntos() {
+		return this.valor;
+	}
+	
 	@Override
 	public String toString() {
 		return "TipoIncidencia [id=" + getId() + ", descripcion=" + getDescripcion() + 

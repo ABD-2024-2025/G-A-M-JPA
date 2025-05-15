@@ -38,6 +38,14 @@ public class Incidencia implements Serializable {
         this.fecha = fecha;
     }
 
+    public void setFecha(java.util.Date fecha) {
+        if (fecha != null) {
+            this.fecha = new java.sql.Date(fecha.getTime());
+        } else {
+            this.fecha = null;
+        }
+    }
+
     public String getNIF() {
         return this.NIF;
     }
@@ -61,6 +69,10 @@ public class Incidencia implements Serializable {
 
     public void setTipoIncidencia(TipoIncidencia tipoIncidencia) {
         this.idTipo = tipoIncidencia;
+    }
+
+    public void setTipo(TipoIncidencia tipo) {
+        setTipoIncidencia(tipo);
     }
    
     public String getAnotacion() {
