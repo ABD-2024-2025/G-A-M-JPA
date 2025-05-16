@@ -1,7 +1,7 @@
 package es.ubu.lsi.model.multas;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 import javax.persistence.*;
 
 /**
@@ -19,6 +19,8 @@ public class Incidencia implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
+    // Utilizado el temporal para el tipo correcto.
+    @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
     
     @Id
@@ -44,14 +46,6 @@ public class Incidencia implements Serializable {
 
     public void setFecha(Date fecha) {
         this.fecha = fecha;
-    }
-
-    public void setFecha(java.util.Date fecha) {
-        if (fecha != null) {
-            this.fecha = new java.sql.Date(fecha.getTime());
-        } else {
-            this.fecha = null;
-        }
     }
 
     public String getNIF() {

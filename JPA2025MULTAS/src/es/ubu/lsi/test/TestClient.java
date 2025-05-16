@@ -170,7 +170,7 @@ public class TestClient {
 			"13/04/19 16:00:00,000000-30000000C-1\n" +
 			"15/05/19 16:00:00,000000-10000000A-3\n"; // nueva fila
 			// @formatter:on
-	
+			
 			if (cadenaEsperada.equals(resultado.toString())) {
 				System.out.println("\tOK incidencia bien insertada");
 			} else {
