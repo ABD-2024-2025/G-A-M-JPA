@@ -34,7 +34,13 @@ import es.ubu.lsi.test.util.PoolDeConexiones;
  * @author <a href="mailto:rmartico@ubu.es">Raúl Marticorena</a>
  * @author <a href="mailto:mmabad@ubu.es">Mario Martínez</a>
  * @author <a href="mailto:srarribas@ubu.es">Sandra Rodríguez</a>
- * @author <a href="mailto:pgdiaz@ubu.es">Pablo García</a> 
+ * @author <a href="mailto:pgdiaz@ubu.es">Pablo García</a>
+ * 
+ * @author <a href="https://joseleelportfolio.vercel.app">José Gallardo</a>
+ * @author <a href="mailto:sap1013@alu.ubu.es">Sara ABejón</a>
+ * @author <a href="mailto:mmg1065@alu.ubu.es">María Molina</a>
+ * 
+ * @version 1.5
  * @since 1.0
  */
 public class TestClient {
@@ -229,14 +235,16 @@ public class TestClient {
 		try {
 			System.out.println("Información completa con grafos de entidades...");
 			List<Vehiculo> vehiculos = implService.consultarVehiculos();		
-			for (Vehiculo vehiclulo : vehiculos) {
-				System.out.println(vehiclulo.toString());
-				Set<Conductor> conductores = (Set<Conductor>) vehiclulo.getConductor();
-				for (Conductor conductor : conductores) {
+			for (Vehiculo vehiculo : vehiculos) {
+				System.out.println(vehiculo.toString());
+				Conductor conductor = vehiculo.getConductor();
+				if (conductor != null) {
 					System.out.println("\t" + conductor.toString());
 					Set<Incidencia> incidencias = conductor.getIncidencias();
-					for (Incidencia incidencia : incidencias) {
-						System.out.println("\t\t" + incidencia.toString());
+					if (incidencias != null) {
+						for (Incidencia incidencia : incidencias) {
+							System.out.println("\t\t" + incidencia.toString());
+						}
 					}
 				}
 			}

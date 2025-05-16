@@ -17,6 +17,17 @@ import es.ubu.lsi.service.PersistenceException;
 import es.ubu.lsi.service.PersistenceFactorySingleton;
 import es.ubu.lsi.service.PersistenceService;
 
+/**
+ * La clase que nos permite gestionar las incidencias de los conductores.
+ * Utilizamos el patrón de diseño DAO para gestionar la persistencia de los objetos.
+ * 
+ * @author <a href="https://joseleelportfolio.vercel.app">José Gallardo</a>
+ * @author <a href="mailto:sap1013@alu.ubu.es">Sara ABejón</a>
+ * @author <a href="mailto:mmg1065@alu.ubu.es">María Molina</a>
+ * 
+ * @version 1.5
+ * @since 1.0
+ */
 public class ServiceImpl extends PersistenceService implements Service {
 
     @Override
