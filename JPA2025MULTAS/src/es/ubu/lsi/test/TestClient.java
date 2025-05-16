@@ -1,15 +1,18 @@
 package es.ubu.lsi.test;
 
 import java.sql.Connection;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Set;
+
+import javax.persistence.EntityGraph;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,9 +20,7 @@ import org.slf4j.LoggerFactory;
 import es.ubu.lsi.model.multas.Vehiculo;
 import es.ubu.lsi.model.multas.Conductor;
 import es.ubu.lsi.model.multas.Incidencia;
-import es.ubu.lsi.model.multas.TipoIncidencia;
 import es.ubu.lsi.service.PersistenceException;
-import es.ubu.lsi.service.PersistenceFactorySingleton;
 import es.ubu.lsi.service.multas.IncidentError;
 import es.ubu.lsi.service.multas.IncidentException;
 import es.ubu.lsi.service.multas.Service;
@@ -56,6 +57,11 @@ public class TestClient {
 
 	/** Simple date format. */
 	private static SimpleDateFormat dateformat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+	
+	/** Entity Manager. */
+
+
+
 
 	/**
 	 * Main.
@@ -107,6 +113,11 @@ public class TestClient {
 			// JPA Service
 			implService = new ServiceImpl();
 			System.out.println("Framework y servicio iniciado...");
+			
+			//Entity Manager PRUEBA
+			EntityManagerFactory emf = Persistence.createEntityManagerFactory("Multas");
+			EntityManager em = emf.createEntityManager();
+			//VehiculoDAO vehiculoDao = new VehiculoDAO(em);
 
 			// insertar incidencia para el conductor 10000000A con 3 puntos de penalización
 			insertarIncidenciaCorrecta(implService);
@@ -115,7 +126,7 @@ public class TestClient {
 			insertarIncidenciaConTipoIncidenciaErroneo(implService);
 					
 			// comprueba que la consulta de pistas carga todos los datos
-			consultarVehiculosUsandoGrafo(implService);
+			consultarVehiculosUsandoGrafo(em);
 
 		} catch (Exception e) { // for testing code...
 			logger.error(e.getMessage());
@@ -191,7 +202,7 @@ public class TestClient {
 			con.commit();
 		} catch (Exception ex) {
 			logger.error("ERROR grave en test. " + ex.getLocalizedMessage());
-			con.rollback();
+			//con.rollback();
 			throw ex;
 		} finally {
 			cerrarRecursos(con, st, rs);
@@ -230,26 +241,40 @@ public class TestClient {
 	 * entidades.
 	 * 
 	 * @param implService implementación del servicio
+	 * 
+	 * @param em           EntityManager inyectado o pasado como parámetro
 	 */
-	private static void consultarVehiculosUsandoGrafo(Service implService) {
+	private static void consultarVehiculosUsandoGrafo(EntityManager em) {
 		try {
 			System.out.println("Información completa con grafos de entidades...");
-			List<Vehiculo> vehiculos = implService.consultarVehiculos();		
+			EntityGraph<?> graph = em.createEntityGraph(Vehiculo.class);
+			graph.addSubgraph("conductores");
+
+			List<Vehiculo> vehiculos = em.createQuery("SELECT v FROM Vehiculo v", Vehiculo.class)
+			    .setHint("javax.persistence.fetchgraph", graph)
+			    .getResultList();
+
+			
+			
+			//List<Vehiculo> vehiculos = implService.consultarVehiculos();		
 			for (Vehiculo vehiculo : vehiculos) {
 				System.out.println(vehiculo.toString());
-				Conductor conductor = vehiculo.getConductor();
-				if (conductor != null) {
-					System.out.println("\t" + conductor.toString());
-					Set<Incidencia> incidencias = conductor.getIncidencias();
-					if (incidencias != null) {
-						for (Incidencia incidencia : incidencias) {
-							System.out.println("\t\t" + incidencia.toString());
+				List<Conductor> conductores = vehiculo.getConductores(); // ahora es una lista
+				//Conductor conductor = vehiculo.getConductor(); // ahora es una lista
+				if (conductores != null) {
+				    for (Conductor conductor : conductores) {
+						System.out.println("\t" + conductor.toString());
+						Set<Incidencia> incidencias = ((Conductor) conductor).getIncidencias();
+						if (incidencias != null) {
+							for (Incidencia incidencia : incidencias) {
+								System.out.println("\t\t" + incidencia.toString());
+							}
 						}
 					}
 				}
 			}
 			System.out.println("OK Sin excepciones en la consulta completa y acceso posterior");
-		} catch (PersistenceException ex) {
+		} catch (Exception ex) { 
 			logger.error("ERROR en transacción de consultas de vehiculos con JPA: " + ex.getLocalizedMessage());
 			throw new RuntimeException("Error en consulta de vehiculos", ex);
 		}

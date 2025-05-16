@@ -76,9 +76,19 @@ public class TipoIncidencia implements Serializable {
 		return this.valor;
 	}
 	
+	/* ANTIGUA 
 	@Override
 	public String toString() {
 		return "TipoIncidencia [id=" + getId() + ", descripcion=" + getDescripcion() + 
 				", valor=" + getValor() + ", incidencias=" + getIncidencias() + "]";
+	}*/
+	
+	/* NUEVA */
+	@Override
+	public String toString() {
+	    int numIncidencias = (incidencias == null) ? 0 : incidencias.size();
+	    return "TipoIncidencia [id=" + getId() + ", descripcion=" + getDescripcion() + 
+	           ", valor=" + getValor() + ", numeroIncidencias=" + numIncidencias + "]";
 	}
+
 }

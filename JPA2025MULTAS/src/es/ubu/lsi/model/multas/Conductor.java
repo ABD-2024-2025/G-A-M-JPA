@@ -31,8 +31,16 @@ public class Conductor implements Serializable {
 	@Embedded
 	private DireccionPostal direccion;
 	private Integer puntos;
-    @OneToMany(mappedBy="conductor") // Cambiado de "idauto" a "conductor"
-    private List<Vehiculo> vehiculos; // Renombrado de idAuto a vehiculos
+	
+	/* ANOTACION NUEVA */
+	@ManyToOne
+	@JoinColumn(name = "idauto") // Esta es la FK en la tabla Conductor
+	private Vehiculo vehiculo;
+	
+	/* ANOTACION ANTIGUA
+    @OneToMany(mappedBy="conductor") // Cambiado de "idauto" a "conductor" 
+    private List<Vehiculo> vehiculos; // Renombrado de idAuto a vehiculos */
+	
     @OneToMany(mappedBy="NIF", cascade=CascadeType.ALL)
 	private Set<Incidencia> incidencias;
 
@@ -79,13 +87,26 @@ public class Conductor implements Serializable {
 		this.puntos = puntos;
 	}
 	
-    public List<Vehiculo> getVehiculos() {
+	/* METODO NUEVO VEHICULO*/
+    public Vehiculo getVehiculos() {
+    	return this.vehiculo;
+    }
+    
+    /* METODO ANTIGUO
+    public List<Vehiculo> getVehiculos() {    	
         return this.vehiculos;
-    }
+    }*/
 
-    public void setVehiculos(List<Vehiculo> vehiculos) {
-        this.vehiculos = vehiculos;
+    /* METODO NUEVO VEHICULO*/
+    public void setVehiculos(Vehiculo vehiculo) {
+    	this.vehiculo = vehiculo;
     }
+    
+    
+    /* METODO ANTIGUO
+    public void setVehiculos(List<Vehiculo> vehiculos) {    	
+        this.vehiculos = vehiculos;
+    }*/
     
     public Set<Incidencia> getIncidencias() {
         return incidencias;
