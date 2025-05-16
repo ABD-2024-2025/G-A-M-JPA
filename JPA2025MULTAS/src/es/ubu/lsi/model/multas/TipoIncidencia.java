@@ -5,6 +5,14 @@ import java.util.List;
 
 import javax.persistence.*;
 
+/**
+ * Clase que representa la información de una incidencia asociada a un conductor.
+ * 
+ * @author <a href="mailto:sap1013@alu.ubu.es">Sara ABejón</a>
+ * 
+ * @version 1.5
+ * @since 1.5
+ */
 @Entity
 @Table(name="TipoIncidencia")
 public class TipoIncidencia implements Serializable {

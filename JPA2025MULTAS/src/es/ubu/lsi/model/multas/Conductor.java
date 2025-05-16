@@ -14,8 +14,9 @@ import javax.persistence.*;
  * @author <a href="https://joseleelportfolio.vercel.app">José Gallardo</a>
  * @author <a href="mailto:sap1013@alu.ubu.es">Sara ABejón</a>
  * @author <a href="mailto:mmg1065@alu.ubu.es">María Molina</a>
- * @since 1.0
- *
+ * 
+ * @version 1.5
+ * @since 1.5
  */
 @Entity
 @Table(name="Conductor")
@@ -30,8 +31,8 @@ public class Conductor implements Serializable {
 	@Embedded
 	private DireccionPostal direccion;
 	private Integer puntos;
-    @OneToMany(mappedBy="idauto")
-    private List<Vehiculo> idAuto;
+    @OneToMany(mappedBy="conductor") // Cambiado de "idauto" a "conductor"
+    private List<Vehiculo> vehiculos; // Renombrado de idAuto a vehiculos
     @OneToMany(mappedBy="NIF", cascade=CascadeType.ALL)
 	private Set<Incidencia> incidencias;
 
@@ -79,11 +80,11 @@ public class Conductor implements Serializable {
 	}
 	
     public List<Vehiculo> getVehiculos() {
-        return (List<Vehiculo>) this.idAuto;
+        return this.vehiculos;
     }
 
     public void setVehiculos(List<Vehiculo> vehiculos) {
-        this.idAuto = vehiculos;
+        this.vehiculos = vehiculos;
     }
     
     public Set<Incidencia> getIncidencias() {

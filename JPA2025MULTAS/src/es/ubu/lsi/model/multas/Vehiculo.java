@@ -3,6 +3,15 @@ package es.ubu.lsi.model.multas;
 import java.io.Serializable;
 import javax.persistence.*;
 
+
+/**
+ * Clase que representa la información de un vehículo asociado a un conductor.
+ * 
+ * @author <a href="mailto:sap1013@alu.ubu.es">Sara ABejón</a>
+ * 
+ * @version 1.5
+ * @since 1.5
+ */
 @Entity
 @Table(name="Vehiculo")
 public class Vehiculo implements Serializable {
@@ -17,7 +26,7 @@ public class Vehiculo implements Serializable {
     private DireccionPostal direccion;
     
     @ManyToOne
-    @JoinColumn(name = "NIF")
+    @JoinColumn(name = "NIFCONDUCTOR") // Cambiado de "NIF" a "NIFCONDUCTOR"
     private Conductor conductor;
 
     public Vehiculo() {

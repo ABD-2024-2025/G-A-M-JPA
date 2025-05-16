@@ -4,6 +4,16 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+/*
+ * DireccionPostal. Clase que representa una dirección postal.
+ * Es una clase embebida que se utiliza en otras entidades
+ * como Conductor y Vehiculo.
+ * 
+ * @author <a href="https://joseleelportfolio.vercel.app">José Gallardo</a>
+ * 
+ * @version 1.5
+ * @since 1.5
+ */
 @Embeddable
 public class DireccionPostal implements Serializable {
 

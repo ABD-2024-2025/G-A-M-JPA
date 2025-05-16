@@ -4,6 +4,14 @@ import java.io.Serializable;
 import java.sql.Date;
 import javax.persistence.*;
 
+/**
+ * Clase que representa una incidencia asociada a un conductor.
+ * 
+ * @author <a href="mailto:mmg1065@alu.ubu.es">María Molina</a>
+ * 
+ * @version 1.5
+ * @since 1.5
+ */
 @Entity
 @Table(name="Incidencia")
 public class Incidencia implements Serializable {
