@@ -25,7 +25,7 @@ import es.ubu.lsi.service.PersistenceService;
  * @author <a href="mailto:sap1013@alu.ubu.es">Sara Abejón</a>
  * @author <a href="mailto:mmg1065@alu.ubu.es">María Molina</a>
  * 
- * @version 1.5
+ * @version 1.7
  * @since 1.0
  */
 public class ServiceImpl extends PersistenceService implements Service {
@@ -52,8 +52,7 @@ public class ServiceImpl extends PersistenceService implements Service {
 
             int puntosRestar = tipoIncidencia.getPuntos();
             if (conductor.getPuntos() < puntosRestar) {
-                throw new IncidentException(IncidentError.NOT_ENOUGH_POINTS.getCode(),
-                        IncidentError.NOT_ENOUGH_POINTS.getMessage());
+                throw new IncidentException(IncidentError.NOT_ENOUGH_POINTS);
             }
 
             // Crear la incidencia
@@ -90,13 +89,12 @@ public class ServiceImpl extends PersistenceService implements Service {
 
             Conductor conductor = conductorDAO.findById(nif);
             if (conductor == null) {
-                throw new IncidentException(IncidentError.CONDUCTOR_NOT_FOUND.getCode(),
-                        IncidentError.CONDUCTOR_NOT_FOUND.getMessage());
+                throw new IncidentException(IncidentError.CONDUCTOR_NOT_FOUND);
             }
 
             // Eliminar incidencias
             List<Incidencia> incidencias = em.createQuery(
-                "SELECT i FROM Incidencia i WHERE i.conductor.nif = :nif", Incidencia.class)
+                "SELECT i FROM Incidencia i WHERE i.conductor.NIF = :nif", Incidencia.class)
                 .setParameter("nif", nif)
                 .getResultList();
             for (Incidencia inc : incidencias) {
