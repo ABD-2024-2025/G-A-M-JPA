@@ -83,9 +83,6 @@ public class TestClient {
 	 */
 	static public void init() {
 		try {
-			// Acuerdate de q la primera vez tienes que crear el .bindings con:
-			//PoolDeConexiones.reconfigurarPool();
-			// Inicializacion de Pool
 			pool = PoolDeConexiones.getInstance();
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
@@ -154,7 +151,7 @@ public class TestClient {
 			// inicialmente
 
 			con = pool.getConnection();
-
+			
 			// Comprobar si la incidencia se ha añadido
 			st = con.createStatement();
 			rs = st.executeQuery("SELECT fecha||'-'||nif||'-'||idtipo FROM INCIDENCIA ORDER BY fecha, nif, idtipo");
@@ -199,7 +196,7 @@ public class TestClient {
 			con.commit();
 		} catch (Exception ex) {
 			logger.error("ERROR grave en test. " + ex.getLocalizedMessage());
-			//con.rollback();
+			con.rollback();
 			throw ex;
 		} finally {
 			cerrarRecursos(con, st, rs);
@@ -250,14 +247,10 @@ public class TestClient {
 			List<Vehiculo> vehiculos = em.createQuery("SELECT v FROM Vehiculo v", Vehiculo.class)
 			    .setHint("javax.persistence.fetchgraph", graph)
 			    .getResultList();
-
-			
-			
-			//List<Vehiculo> vehiculos = implService.consultarVehiculos();		
+	
 			for (Vehiculo vehiculo : vehiculos) {
 				System.out.println(vehiculo.toString());
-				List<Conductor> conductores = vehiculo.getConductores(); // ahora es una lista
-				//Conductor conductor = vehiculo.getConductor(); // ahora es una lista
+				List<Conductor> conductores = vehiculo.getConductores();
 				if (conductores != null) {
 				    for (Conductor conductor : conductores) {
 						System.out.println("\t" + conductor.toString());
