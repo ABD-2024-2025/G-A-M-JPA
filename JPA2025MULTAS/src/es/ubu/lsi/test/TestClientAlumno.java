@@ -8,7 +8,6 @@ import es.ubu.lsi.service.multas.IncidentError;
 import es.ubu.lsi.service.multas.IncidentException;
 import es.ubu.lsi.service.multas.Service;
 import es.ubu.lsi.service.multas.ServiceImpl;
-import es.ubu.lsi.test.util.PoolDeConexiones; // Añadido para inicializar el pool
 
 /**
  * Nuestros test personalizados para la práctica.
@@ -24,33 +23,32 @@ import es.ubu.lsi.test.util.PoolDeConexiones; // Añadido para inicializar el po
  */
 public class TestClientAlumno {
 
+	/**
+	 * Formato de fecha utilizado en los tests.
+	 */
     private static final SimpleDateFormat dateformat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+    
+    /**
+	 * Servicio de incidencias.
+	 */
     private static final Service service = new ServiceImpl();
 
     /**
-     * Excepción personalizada para los tests de alumno.
+     * Excepción personalizada para los tests.
      */
     public static class TestAlumnoException extends Exception {
         private static final long serialVersionUID = 1L;
 		public TestAlumnoException(String msg) { super(msg); }
         public TestAlumnoException(String msg, Throwable cause) { super(msg, cause); }
     }
-
+    
     /**
-     * Inicializa el pool de conexiones antes de ejecutar los tests.
+     * Ejecuta los tests.
+     * 
+     * @param args argumentos por la línea de comandos.
      */
-    private static void init() {
-        try {
-            PoolDeConexiones.getInstance();
-        } catch (Exception e) {
-            System.err.println("Error inicializando el pool de conexiones: " + e.getMessage());
-            e.printStackTrace();
-        }
-    }
-
     public static void main(String[] args) {
         System.out.println("=== TESTS ALUMNO ===");
-        init();
         try {
             testInsertarIncidenciaConductorNoExiste();
         } catch (Exception e) {
@@ -65,7 +63,9 @@ public class TestClientAlumno {
     }
 
     /**
-     * Test: Intenta insertar una incidencia para un conductor que no existe.
+     * Test: Inserta una incidencia con un conductor que no existe.
+     * 
+     * @throws Exception si ocurre un error al insertar la incidencia.
      */
     public static void testInsertarIncidenciaConductorNoExiste() throws Exception {
         System.out.println("[testInsertarIncidenciaConductorNoExiste] Insertando incidencia con conductor inexistente...");
@@ -85,8 +85,10 @@ public class TestClientAlumno {
     }
 
     /**
-     * Test: Indulta a un conductor (elimina incidencias y restaura puntos).
-     */
+	 * Test: Indulta a un conductor.
+	 * 
+	 * @throws Exception si ocurre un error al indultar al conductor.
+	 */
     public static void testIndultarConductor() throws Exception {
         System.out.println("[testIndultarConductor] Indultando conductor...");
         String nif = "10000000A";
