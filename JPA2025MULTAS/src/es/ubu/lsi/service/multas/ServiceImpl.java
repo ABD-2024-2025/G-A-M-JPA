@@ -22,7 +22,7 @@ import es.ubu.lsi.service.PersistenceService;
  * Utilizamos el patrón de diseño DAO para gestionar la persistencia de los objetos.
  * 
  * @author <a href="https://joseleelportfolio.vercel.app">José Gallardo</a>
- * @author <a href="mailto:sap1013@alu.ubu.es">Sara ABejón</a>
+ * @author <a href="mailto:sap1013@alu.ubu.es">Sara Abejón</a>
  * @author <a href="mailto:mmg1065@alu.ubu.es">María Molina</a>
  * 
  * @version 1.5
@@ -59,7 +59,7 @@ public class ServiceImpl extends PersistenceService implements Service {
             // Crear la incidencia
             Incidencia incidencia = new Incidencia();
             incidencia.setConductor(conductor);
-            incidencia.setTipo(tipoIncidencia);
+            incidencia.setTipoIncidencia(tipoIncidencia);
             incidencia.setFecha(fecha);
             incidenciaDAO.create(incidencia);
 
