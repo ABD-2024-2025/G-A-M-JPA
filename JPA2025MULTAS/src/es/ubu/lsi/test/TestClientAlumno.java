@@ -60,6 +60,7 @@ public class TestClientAlumno {
         } catch (Exception e) {
             System.out.println("Fallo testIndultarConductor: " + e.getMessage());
         }
+        System.out.println("=== TESTS ALUMNO ===");
     }
 
     /**
