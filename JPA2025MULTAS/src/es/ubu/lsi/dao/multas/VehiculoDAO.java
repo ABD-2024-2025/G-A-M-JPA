@@ -7,7 +7,7 @@ import javax.persistence.TypedQuery;
 import es.ubu.lsi.dao.JpaDAO;
 import es.ubu.lsi.model.multas.Vehiculo;
 
-/*
+/**
  * VehiculoDAO. Sirve para gestionar la persistencia de los objetos de tipo Vehiculo.
  * 
  * @author <a href="https://joseleelportfolio.vercel.app">José Gallardo</a>

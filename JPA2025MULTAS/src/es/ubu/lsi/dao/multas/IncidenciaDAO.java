@@ -8,11 +8,11 @@ import es.ubu.lsi.dao.JpaDAO;
 import es.ubu.lsi.model.multas.Incidencia;
 import es.ubu.lsi.model.multas.TipoIncidencia;
 
-
-/*
+/**
  * IncidenciaDAO. Sirve para gestionar la persistencia de los objetos de tipo Incidencia.
  * 
  * @author <a href="https://joseleelportfolio.vercel.app">José Gallardo</a>
+ * @author <a href="mailto:sap1013@alu.ubu.es">Sara Abejón</a>
  * 
  * @version 1.5
  * @since 1.5
