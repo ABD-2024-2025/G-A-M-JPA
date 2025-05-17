@@ -9,8 +9,12 @@
 		<!-- Eclipse Link provider (other provider) -->
 		<!-- <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider> -->
 		
-		<!-- COMPLETAR LISTA DE CLASES POR LOS ALUMNOS -->		
-		
+		 <!-- LISTA DE CLASES ENTIDAD -->
+		<class>es.ubu.lsi.model.multas.Conductor</class>
+		<class>es.ubu.lsi.model.multas.Vehiculo</class>
+		<class>es.ubu.lsi.model.multas.Incidencia</class>
+		<class>es.ubu.lsi.model.multas.TipoIncidencia</class>
+		<class>es.ubu.lsi.model.multas.DireccionPostal</class>
 
 		<properties>
 			 
